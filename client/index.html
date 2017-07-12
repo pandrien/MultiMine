@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<script src="jquery-3.2.1.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<link href="default.css" rel="stylesheet" type="text/css">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Minesweeper</title>
+	</head>
+
+	<body>
+		<div id="page">
+			<h1 id="header">SinglePlayer</h1>
+			<form>
+				<input id='roomName' type="text" pattern="[a-zA-Z0-9][a-zA-Z0-9]+" 
+					name="Room Name" title="AlphaNumeric Only">
+				<input type="submit" value="Join/Create Room">
+			</form>
+			<p id="remaining"><p>
+			
+			<div id="wrap">
+				<canvas></canvas>
+				<div id="death_overlay">
+					<h2>You Died</h2>
+				</div>
+				<div id="win_overlay">
+					<h2>You Win!</h2>
+				</div>
+			</div>
+		</div>
+		
+		<script src="index.js"></script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+* {
+   -webkit-box-sizing: border-box;   /* Safari 3-4, also probably droppable */
+    box-sizing:        border-box;   /* Everything else */
+}
+
+html {
+	overflow-y: scroll;
+}
+
+/* center website */
+body {
+	margin:0;
+	padding:0;
+	text-align: center;
+	background-color:#462bbf;
+}
+
+#page {
+	text-align: left;
+	width: 900px;
+	margin: 0 auto;
+	background-color:#fff;
+	padding: 10px;
+}
+
+#wrap {
+	display: inline-block;
+    position: relative;
+}
+
+#death_overlay {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background-color: rgba(188, 0, 0, 0.6);
+	display: none;
+}
+
+#win_overlay {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background-color: rgba(0, 0, 188, 0.2);
+	display: none;
+}
+
+h2 {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 80px;
+}
+
+canvas {
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+}
