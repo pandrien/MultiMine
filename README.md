@@ -24,6 +24,6 @@ npm start
 # Architecture
 
 Game data is stored in a javascript object. A new instance is created for each game and passed to the client.
-Socket.io creates an observer patern  (http://gameprogrammingpatterns.com/observer.html) where the client and server listen and recieve updates.
+Socket.io creates an observer patern  (http://gameprogrammingpatterns.com/observer.html) where the client and server listen and receive updates.
 The client provides visuals primarily through a <canvas> element.
 
