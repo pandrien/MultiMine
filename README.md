@@ -1,5 +1,8 @@
-Minesweeper Clone
-=================
+MultiMine is a Multiplayer Minesweeper Clone
+============================================
+
+Development Deployment at
+http://52.175.228.158/
 
 # How to use
 
