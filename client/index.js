@@ -104,6 +104,7 @@ function drawSquare(color, x, y, score=false) {
 		if (score == 1) {ctx.fillStyle = '#00f';}
 		if (score == 2) {ctx.fillStyle = '#0f0';}
 		if (score == 3) {ctx.fillStyle = '#f00';}
+		if (score == 4) {ctx.fillStyle = '#0A5C04';}
 		ctx.fillText(score,(x+.5)*size,(y+.5)*size);
 	};
 	ctx.strokeRect(x*size,y*size, size, size);
