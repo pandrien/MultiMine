@@ -27,6 +27,11 @@ socket.on("refresh", function(g) {
 			}
 		};
 	};
+	
+	$("#death_overlay").hide();
+	$("#win_overlay").hide();
+	$("#Progress").text("Click to begin");
+	$("#Flags").text("ALL");
 });
 
 socket.on("death", function() {
@@ -44,7 +49,17 @@ socket.on("show", function(x,y,score) {
 	if (game[[x,y]].flag) {
 		game[[x,y]].flag = false;
 		game.flags--;
+		$("#Flags").text(game.mines-game.flags+"/"+game.mines);
 	}
+	
+	if (game[[x,y]].explored) {
+		console.log("already explored");
+		return;
+	};
+	
+	game.remaining--;
+	$("#Progress").text(game.remaining);
+	
 	game[[x,y]].explored = true;
 	game[[x,y]].score = score;
 	drawSquare('#fff',x,y,score);
@@ -54,9 +69,11 @@ socket.on("mark", function(x,y,state) {
 	game[[x,y]].flag = state;
 	if (state) {
 		game.flags++;
+		$("#Flags").text(game.mines-game.flags+"/"+game.mines);
 		drawSquare('#900',x,y);
 	} else {
 		game.flags--;
+		$("#Flags").text(game.mines-game.flags+"/"+game.mines);
 		drawSquare('#86e0ff',x,y);
 	};
 });
