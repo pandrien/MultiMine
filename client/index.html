@@ -12,13 +12,18 @@
 	<body>
 		<div id="page">
 			<h1 id="header">SinglePlayer</h1>
+			
 			<form>
-				<input id='roomName' type="text" pattern="[a-zA-Z0-9][a-zA-Z0-9]+" 
+				<input id='roomName' type="text" pattern="^[a-zA-Z0-9]+$" required="required"
 					name="Room Name" title="AlphaNumeric Only">
 				<input type="submit" value="Join/Create Room">
+				<button id="newGame">New Game</button></li>
 			</form>
-			<p> Mines Remaining: <b id="Flags">ALL</b></p> 
-			<p>Progress: <b id="Progress">Click to begin</b><p>
+				
+			<ul>
+				<li><p> Mines Remaining: <b id="Flags">ALL</b></p></li>
+				<li><p>Progress: <b id="Progress">Click a square to begin</b></p></li>
+			</ul>
 			
 			<div id="wrap">
 				<canvas></canvas>

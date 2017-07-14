@@ -11,6 +11,8 @@ socket.on("connect", function() {
 });
 
 socket.on("refresh", function(g) {
+	socket.emit('revive');
+	
 	console.log("New Game");
 	game = g;
 	ctx.canvas.width = g.cols*size;
@@ -30,7 +32,7 @@ socket.on("refresh", function(g) {
 	
 	$("#death_overlay").hide();
 	$("#win_overlay").hide();
-	$("#Progress").text("Click to begin");
+	$("#Progress").text("Click a square to begin");
 	$("#Flags").text("ALL");
 });
 
@@ -106,6 +108,11 @@ $('form').submit(function(e) {
 	room = $('#roomName').val();
 	$('#header').text("You are in room: "+room);
 	socket.emit('room', room);
+	e.preventDefault();
+});
+
+$('button').click(function(e) {
+	socket.emit('new game');
 	e.preventDefault();
 });
 

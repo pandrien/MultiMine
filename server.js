@@ -32,6 +32,7 @@ class chunk {
 		this.remaining = this.cols*this.rows - this.mines;
 		
 		this.started = false;
+		this.alive = true;
 		
 		for (var x=0; x < this.cols; x++) {
 			for (var y=0; y < this.rows ; y++) {
@@ -105,13 +106,11 @@ class chunk {
 };
 
 function joinRoom(name, socket) {
-	// is name valid?
-	if (!/^[a-zA-Z0-9]+$/.test(name)) {
-		return false;
-	};
-	
 	// is user already in a room?
 	if (userRoom[socket.id]) {
+		if (userRoom[socket.id] == name) {
+			return;
+		}
 		leaveRoom(socket);
 	};
 	
@@ -288,13 +287,45 @@ function connect(socket) {
 	});
 	
 	socket.on('room', function(name) {
+		if (!/^[a-zA-Z0-9]+$/.test(name)) {
+			console.log('invalid name');
+			return;
+		};
+		
 		if (joinRoom(name, socket)) {
 			game = roomList[name];
-			//alive = !game.started;
+			alive = true;
 			socket.emit('refresh',game);
 		} else {
 			console.log('request invalid room');
 		};
+	});
+	
+	socket.on('new game',function() {
+		console.log("New Game");
+		game = new chunk();
+		alive = true;
+		
+		if (userRoom[socket.id]) {
+			roomList[userRoom[socket.id]] = game;
+			io.to(userRoom[socket.id]).emit('refresh',game);
+		} else {
+			socket.emit('refresh',game);
+		};
+	});
+	
+	socket.on('revive',function() {
+		
+		if (userRoom[socket.id]) {
+			game = roomList[userRoom[socket.id]];
+		}
+		
+		if (game.started) {
+			console.log('stay dead sucker',socket.id);
+			return;
+		}
+		console.log('revived',socket.id);
+		alive = true;
 	});
 }
 
